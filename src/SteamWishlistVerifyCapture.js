@@ -6,6 +6,8 @@ class SteamWishlistVerifyCapture {
         this.originDOC = null;
         this.doc = null;
         this.domElement = null;
+
+        this.isVideo = true;
     }
 
     initPage(){
@@ -14,7 +16,7 @@ class SteamWishlistVerifyCapture {
 
     async buildPage(cb){
         try{
-            this.doc = await BuildPage(this.originDOC);
+            this.doc = await BuildPage(this.originDOC, this.isVideo);
 
             const tempDIV = document.createElement('div');
             tempDIV.appendChild(this.doc.body);

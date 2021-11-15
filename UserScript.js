@@ -15,6 +15,10 @@
 
 (function(){
     var swl = new SteamWishlistVerifyCapture.default();
+
+    //設為 false 將不會下載 video resource
+    swl.isVideo = true;
+
     var refNode = document.getElementById('ignoreBtn').nextElementSibling;
     var btn = document.createElement('div');
     document.getElementById('queueActionsCtn').insertBefore(btn, refNode);

@@ -1,6 +1,6 @@
 import DownloadSource from "./DownloadSource";
 
-const BuildPage = async doc => {
+const BuildPage = async (doc, isVideo) => {
     const uuidv4 = () => ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>(c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
 
     const nodesWithSrc = doc.querySelectorAll('*[src]');
@@ -8,6 +8,12 @@ const BuildPage = async doc => {
 
     nodesWithSrc.forEach(node => {
         const id = uuidv4();
+
+        if(node.nodeName == 'VIDEO' && !isVideo){
+            node.src = '';
+            return;
+        }
+
         resources.push({ id, url: node.src });
         node.setAttribute('id', id);
         node.src = '';
