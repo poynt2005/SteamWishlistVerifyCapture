@@ -22,6 +22,12 @@ const ReadPage = () => {
     `;
 
     const doc = new DOMParser().parseFromString(htmlStr, 'text/html');
+    
+    //檢測 Augmented Steam Node
+    doc.querySelectorAll('*[id^=es]').forEach(node => {
+        node.remove();
+    });
+    
     return doc;
 };
 
